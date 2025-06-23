@@ -2,7 +2,7 @@
 nixPkgs = ['nodejs_18', 'pnpm']
 
 [phases.install]
-cmds = ['pnpm install --frozen-lockfile']
+cmds = ['pnpm config set ignore-workspace-root-check true', 'pnpm install --frozen-lockfile']
 
 [phases.build]
 cmds = ['pnpm build']
