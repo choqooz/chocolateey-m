@@ -1,0 +1,158 @@
+.result-card {
+  background: white;
+  border-radius: 15px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e1e5e9;
+  transition: all 0.3s ease;
+  animation: fadeInUp 0.6s ease forwards;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.result-card.clickable {
+  cursor: pointer;
+}
+
+.result-card.clickable:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  border-color: #667eea;
+}
+
+.result-card h3 {
+  font-size: 1.2rem;
+  color: #333;
+  margin-bottom: 0.75rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.result-card p {
+  margin-bottom: 0.5rem;
+  color: #666;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+.result-card p strong {
+  color: #333;
+  font-weight: 600;
+}
+
+.result-card .duration {
+  color: #667eea;
+  font-weight: 500;
+}
+
+.result-card em {
+  color: #999;
+  font-style: italic;
+}
+
+.card-actions {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+
+.play-button,
+.details-button {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 25px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  flex: 1;
+  min-width: 120px;
+}
+
+.play-button {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.play-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+.details-button {
+  background: rgba(102, 126, 234, 0.1);
+  color: #667eea;
+  border: 1px solid rgba(102, 126, 234, 0.2);
+}
+
+.details-button:hover {
+  background: rgba(102, 126, 234, 0.2);
+  transform: translateY(-2px);
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .result-card {
+    padding: 1rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .result-card h3 {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .result-card p {
+    font-size: 0.85rem;
+  }
+
+  .card-actions {
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-top: 0.75rem;
+  }
+
+  .play-button,
+  .details-button {
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.85rem;
+    min-width: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .result-card {
+    padding: 0.75rem;
+  }
+
+  .result-card h3 {
+    font-size: 0.9rem;
+    line-height: 1.2;
+  }
+
+  .result-card p {
+    font-size: 0.8rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .card-actions {
+    gap: 0.4rem;
+    margin-top: 0.5rem;
+  }
+
+  .play-button,
+  .details-button {
+    padding: 0.4rem 0.6rem;
+    font-size: 0.8rem;
+    border-radius: 20px;
+  }
+}

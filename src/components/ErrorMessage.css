@@ -1,0 +1,110 @@
+.error-container {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  margin-bottom: 2rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  animation: slideInError 0.3s ease;
+}
+
+.error-message {
+  display: flex;
+  align-items: center;
+  padding: 1.5rem;
+  background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+  color: white;
+  border-radius: 20px;
+  position: relative;
+}
+
+.error-icon {
+  font-size: 1.5rem;
+  margin-right: 1rem;
+  flex-shrink: 0;
+}
+
+.error-content {
+  flex: 1;
+}
+
+.error-content h3 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.error-content p {
+  margin: 0;
+  font-size: 1rem;
+  opacity: 0.9;
+  line-height: 1.4;
+}
+
+.error-close {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.error-close:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.1);
+}
+
+@keyframes slideInError {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .error-message {
+    padding: 1.25rem;
+  }
+
+  .error-content h3 {
+    font-size: 1.1rem;
+  }
+
+  .error-content p {
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .error-message {
+    padding: 1rem;
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+  }
+
+  .error-icon {
+    margin-right: 0;
+    margin-bottom: 0.5rem;
+  }
+
+  .error-close {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+  }
+}
