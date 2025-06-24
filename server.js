@@ -340,12 +340,12 @@ app.get('/api/health', (req, res) => {
 });
 
 // Catch-all handler: send back React's index.html file in production
-// But only for non-API routes
 if (process.env.NODE_ENV === 'production') {
-  app.get('/*', (req, res) => {
-    // Don't handle API routes with the catch-all
+  // Use a more specific pattern to avoid conflicts with path-to-regexp v8
+  app.get('*', (req, res, next) => {
+    // Skip API routes - let them 404 naturally
     if (req.path.startsWith('/api/')) {
-      return res.status(404).json({ error: 'API endpoint not found' });
+      return next();
     }
 
     console.log('🌐 Serving index.html for path:', req.path);
