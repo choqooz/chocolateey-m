@@ -1,14 +1,14 @@
 [phases.setup]
-nixPkgs = ['nodejs_18', 'pnpm']
+nixPkgs = ["nodejs_18"]
 
 [phases.install]
-cmds = ['pnpm config set ignore-workspace-root-check true', 'pnpm install --frozen-lockfile']
+cmds = ["npm ci"]
 
 [phases.build]
-cmds = ['pnpm build']
+cmds = ["npm run build"]
 
 [start]
-cmd = 'pnpm start'
+cmd = "npm start"
 
 [variables]
-NODE_ENV = 'production' 
+NODE_ENV = "production" 
