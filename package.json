@@ -69,10 +69,10 @@
     "zustand": "^5.0.5"
   },
   "resolutions": {
-    "path-to-regexp": "8.2.0"
+    "path-to-regexp": "6.3.0"
   },
   "overrides": {
-    "path-to-regexp": "8.2.0"
+    "path-to-regexp": "6.3.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.25.0",
