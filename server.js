@@ -339,19 +339,7 @@ app.get('/api/health', (req, res) => {
   });
 });
 
-// Catch-all handler: send back React's index.html file in production
-if (process.env.NODE_ENV === 'production') {
-  // Use a named wildcard pattern for path-to-regexp v8 compatibility
-  app.get('/*path', (req, res, next) => {
-    // Skip API routes - let them 404 naturally
-    if (req.path.startsWith('/api/')) {
-      return next();
-    }
 
-    console.log('🌐 Serving index.html for path:', req.path);
-    res.sendFile(path.join(__dirname, 'dist', 'index.html'));
-  });
-}
 
 // Start server
 app.listen(PORT, '0.0.0.0', () => {
