@@ -1,0 +1,24 @@
+{
+  "name": "Chocolateey - Tu Música Favorita",
+  "short_name": "Chocolateey",
+  "description": "Descubre y escucha tu música favorita con Chocolateey. Una plataforma moderna para explorar canciones, artistas y crear tu biblioteca personal.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#1a1a1a",
+  "theme_color": "#1a1a1a",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/rhcp.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/rhcp2.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "categories": ["music", "entertainment"],
+  "lang": "es"
+}

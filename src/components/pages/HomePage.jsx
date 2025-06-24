@@ -15,6 +15,7 @@ import {
 } from 'lucide-react';
 import usePlayerStore from '../../stores/playerStore';
 import useSearchStore from '../../stores/searchStore';
+import SEO from '../SEO';
 
 const HomePage = () => {
   const setCurrentSong = usePlayerStore((state) => state.setCurrentSong);
@@ -159,6 +160,13 @@ const HomePage = () => {
 
   return (
     <div className="h-full flex flex-col">
+      <SEO
+        title="Chocolateey - Tu Música Favorita"
+        description="Chocolateey: la música de la favela y el rrioba en un solo mix. Descubrí esos temardos re 🥵, temones pa barrer el piso y artistas que rompen sin filtro. Subite a este viaje de br funk, cumbia villera y capaz algo de LuisMi. Tu movida, tu playlist."
+        image="https://chocolateey-m-production.up.railway.app/og-image.png"
+        url="https://chocolateey-m-production.up.railway.app/"
+        type="website"
+      />
       {/* Scrollable Content - Exactamente como Sidebar */}
       <div className="flex-1 overflow-y-auto scrollbar-thin scrollbar-thumb-slate-600 scrollbar-track-transparent main-scrollbar">
         <div className="p-6 space-y-4 pb-6 md:pb-24">
