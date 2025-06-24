@@ -9,7 +9,7 @@
   },
   "scripts": {
     "dev": "concurrently \"node server.js\" \"vite --host\"",
-    "start": "node server.js",
+    "start": "NODE_ENV=production node server.js",
     "frontend": "vite --host",
     "backend": "node server.js",
     "build": "tsc && vite build",

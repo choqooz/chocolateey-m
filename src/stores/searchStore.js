@@ -57,17 +57,64 @@ const useSearchStore = create((set, get) => ({
     set({ loading: true, error: null, searchQuery: query, searchType: type });
 
     try {
-      const response = await fetch(
-        `${API_BASE_URL}/api/search?query=${encodeURIComponent(
-          query
-        )}&type=${type}`
+      const searchUrl = `${API_BASE_URL}/api/search?query=${encodeURIComponent(
+        query
+      )}&type=${type}`;
+
+      console.log('🔍 Frontend: Iniciando búsqueda...');
+      console.log('🌐 Frontend: URL de búsqueda:', searchUrl);
+      console.log('📝 Frontend: Query:', query);
+      console.log('🎯 Frontend: Tipo:', type);
+      console.log('🔧 Frontend: API_BASE_URL:', API_BASE_URL);
+      console.log(
+        '🔧 Frontend: Entorno:',
+        import.meta.env.PROD ? 'PRODUCCIÓN' : 'DESARROLLO'
       );
 
+      const response = await fetch(searchUrl, {
+        method: 'GET',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+      });
+
+      console.log('📡 Frontend: Respuesta recibida:', {
+        ok: response.ok,
+        status: response.status,
+        statusText: response.statusText,
+        headers: {
+          'content-type': response.headers.get('content-type'),
+        },
+      });
+
       if (!response.ok) {
-        throw new Error(`Error ${response.status}: ${response.statusText}`);
+        const errorText = await response.text();
+        console.error('❌ Frontend: Error en respuesta:', errorText);
+        throw new Error(
+          `Error ${response.status}: ${response.statusText} - ${errorText}`
+        );
+      }
+
+      const contentType = response.headers.get('content-type');
+      if (!contentType || !contentType.includes('application/json')) {
+        const responseText = await response.text();
+        console.error(
+          '❌ Frontend: Respuesta no es JSON:',
+          responseText.substring(0, 200)
+        );
+        throw new Error(
+          'La respuesta del servidor no es JSON válido. Posible problema de configuración.'
+        );
       }
 
       const data = await response.json();
+
+      console.log('✅ Frontend: Datos recibidos:', {
+        success: data.success,
+        dataLength: data.data ? data.data.length : 0,
+        hasError: !!data.error,
+      });
 
       if (data.error) {
         throw new Error(data.error);
@@ -76,6 +123,7 @@ const useSearchStore = create((set, get) => ({
       // El servidor devuelve {success: true, data: [...]}
       set({ results: data.data || data, loading: false });
     } catch (err) {
+      console.error('❌ Frontend: Error en performSearch:', err);
       set({ error: err.message, results: [], loading: false });
     }
   },

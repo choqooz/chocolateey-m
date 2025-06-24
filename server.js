@@ -39,6 +39,26 @@ app.use(
 );
 app.use(express.json());
 
+// Request logging middleware for debugging
+app.use((req, res, next) => {
+  console.log(
+    `🔍 ${req.method} ${req.path} - Origin: ${req.get('Origin') || 'none'}`
+  );
+  if (req.path.startsWith('/api/')) {
+    console.log('🎯 API Request detected:', {
+      method: req.method,
+      path: req.path,
+      query: req.query,
+      headers: {
+        'content-type': req.get('content-type'),
+        'user-agent': req.get('user-agent'),
+        accept: req.get('accept'),
+      },
+    });
+  }
+  next();
+});
+
 // Serve static files from the dist directory in production
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, 'dist')));
@@ -320,8 +340,15 @@ app.get('/api/health', (req, res) => {
 });
 
 // Catch-all handler: send back React's index.html file in production
+// But only for non-API routes
 if (process.env.NODE_ENV === 'production') {
   app.get('/*', (req, res) => {
+    // Don't handle API routes with the catch-all
+    if (req.path.startsWith('/api/')) {
+      return res.status(404).json({ error: 'API endpoint not found' });
+    }
+
+    console.log('🌐 Serving index.html for path:', req.path);
     res.sendFile(path.join(__dirname, 'dist', 'index.html'));
   });
 }
