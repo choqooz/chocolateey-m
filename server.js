@@ -341,8 +341,8 @@ app.get('/api/health', (req, res) => {
 
 // Catch-all handler: send back React's index.html file in production
 if (process.env.NODE_ENV === 'production') {
-  // Use a more specific pattern to avoid conflicts with path-to-regexp v8
-  app.get('/*', (req, res, next) => {
+  // Use a named wildcard pattern for path-to-regexp v8 compatibility
+  app.get('/*path', (req, res, next) => {
     // Skip API routes - let them 404 naturally
     if (req.path.startsWith('/api/')) {
       return next();
